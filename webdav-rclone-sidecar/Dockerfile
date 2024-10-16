@@ -6,9 +6,12 @@ ENV WEBDAV_VENDOR=other
 ENV JOVYAN_UID=1000
 ENV JOVYAN_GRP=100
 
-RUN apk --no-cache add bash ca-certificates fuse3 rclone tini \
- && rclone config touch
+RUN apk --no-cache add bash ca-certificates fuse3 git go tini
 
+RUN git clone -b retry-on-425-too-early https://github.com/butonic/rclone.git && cd rclone && \
+    go build && ln -s /rclone/rclone /usr/local/bin/rclone && rclone config touch
+
+RUN go clean -cache
 # to support unprivileged mounts
 RUN sed -ie 's/#\s*\(user_allow_other\)/\1/' /etc/fuse.conf
 
