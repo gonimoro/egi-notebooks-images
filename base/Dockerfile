@@ -1,16 +1,12 @@
-# 2026-05-04
-# hub-5.4.5
+# 2026-05-11
+# hub-5.4.6
 # julia-1.12.6
 # lab-4.5.7
 # notebook-7.5.6
 # python-3.13.13
 # r-4.5.3
 # ubuntu-24.04.4
-FROM quay.io/jupyter/datascience-notebook:bc0e14e1b5a4
-
-#FIXME: remove this line when datascience-notebook
-#       with jupyterhub==5.4.6 is available 
-RUN pip install --no-cache-dir jupyterhub==5.4.6
+FROM quay.io/jupyter/datascience-notebook:edaf65ba4ecf
 
 USER root
 
